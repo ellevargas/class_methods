@@ -26,10 +26,31 @@
 ###################################
 
 ## INSTANCE VARIABLES
+  # ATTRIBUTES
+    # ex: name, username, password
 
-## INSTANCE METHODS
 
-      #INITIALIZE METHOD
+## INSTANCE METHODS - the behaviors of our classes
+  # behaviors
+    # ex: make a post, send a message, like a post, create a photo album
+
+##INITIALIZE METHOD
+  # runs automatically when we create a new object
+
+# class User
+#
+#   def initialize
+#     @name # doesn't have to equal anything
+#   end
+#
+#   def add_username(name)
+#     @name = name
+#   end
+# end
+#
+# user1 = User.new
+# puts user1.methods << snazzy thing you can do!
+
 
 
 ## ATTRIBUTES
@@ -62,8 +83,15 @@
 
 #Class methods are called directly by the class and not by an instance of the class.
 
-
-
+# class Kitten
+#
+#   def self.say_meow
+#     return "meow" << return better than puts here
+#   end
+#
+# end
+#
+# puts Kitten.say_meow.upcase
 
 
 ###################################
@@ -71,38 +99,44 @@
 ###################################
 
 
-# class Pawn
-#   attr_reader :position
-#   def initialize(position)
-#     @position = position
-#   end
-#
-#   # This is the class method, it starts with self.
-#   # It is only called on the class directly Pawn.make_row
-#   def self.make_row(side)
-#     if side == "white"
-#       num = 2
-#     else
-#       num = 7
-#     end
-#
-#     pawns = []
-#     ("a".."h").each do |letter|
-#       pawns << self.new("#{letter}#{num}")
-#     end
-#
-#     pawns
-#   end
-# end
+class Pawn
+  attr_reader :position
+  def initialize(position)
+    @position = position
+  end
+
+  # This is the class method, it starts with self.
+  # It is only called on the class directly Pawn.make_row
+  def self.make_row(side)
+    if side == "white"
+      num = 2
+    else
+      num = 7
+    end
+
+    pawns = []
+    ("a".."h").each do |letter|
+      pawns << self.new("#{letter}#{num}")
+      # it's making a new object of itself
+    end
+
+    pawns
+  end
+end
 #
 # #make one pawn
-# one_pawn = Pawn.new("A2")
+one_pawn = Pawn.new("A2")
+one_pawn.make_row("purple") << # won't work because make_row must be called only on the class and not on the object because of the self e.g. Pawn.make_row
 #
 # #make a whole row of pawns
 # pawns = Pawn.make_row("black")
 #
 # #What is being stored in this local variable pawns?
 # print pawns
+#
+# pawns.each do |pawn|
+#   puts pawn.position
+# end
 #
 # #WHAT IS THIS DOING!?
 # puts pawns.shuffle.first.position
